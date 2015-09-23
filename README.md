@@ -1,1 +1,2 @@
-# public-api
+# Naše Školy - Public API
+

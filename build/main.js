@@ -1,7 +1,9 @@
 /// <reference path="../typings/tsd.d.ts" />
 var express = require('express');
 var app = express();
-app.get('/', function (req, res) {
+app.get('/', 
+//passport.authenticate('bearer', { session: false }),
+function (req, res) {
     res.json({
         "app": "Naše školy",
         "version": "0.1-alfa",

@@ -5,6 +5,7 @@
 		"outDir": "../build"	
 	},
 	"files": [
-		"main.ts"
+		"main.ts",
+		"authentication.ts"
 	]
 }
