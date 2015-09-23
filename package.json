@@ -9,9 +9,10 @@
 	"build": "cd src; tsc",
 	"build:watch": "cd src; tsc --watch",
 	
-	"build-tests": "cd test; tsc",
-	"build-tests:watch": "cd test; tsc --watch",
+	"build-tests": "cd test; rm -r ./build; tsc",
+	"build-tests:watch": "cd test; rm -r ./build; tsc --watch",
 	
+	"pretest": "npm run build-tests",
     "test": "mocha --recursive test/**/*.js",
     "test:watch": "npm run test -- --watch --reporter dot --growl",
 	
