@@ -4,19 +4,10 @@
   "description": "This is a public API for the 'Nase skoly' project.",
   "main": "build/main.js",
   "scripts": {
-	"start": "node build/main.js",
-	
-	"build": "cd src; tsc",
-	"build:watch": "cd src; tsc --watch",
-	
-	"build-tests": "cd test; rm -r ./build; tsc",
-	"build-tests:watch": "cd test; rm -r ./build; tsc --watch",
-	
-	"pretest": "npm run build-tests",
+    "start": "node server.js",
     "test": "mocha --recursive test/**/*.js",
     "test:watch": "npm run test -- --watch --reporter dot --growl",
-	
-	"dev": "(npm run build:watch &); (npm run build-tests:watch &); npm run test:watch"
+	"dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -37,16 +28,22 @@
     "babel-core": "^5.8.25",
     "babel-loader": "^5.3.2",
     "chai": "^3.3.0",
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.3.21",
     "mocha": "^2.3.3",
+    "mocha-lcov-reporter": "^1.0.0",
     "serve-static": "^1.10.0",
-    "ts-loader": "^0.5.5",
-    "typescript": "^1.6.2",
-    "typescript-require": "^0.2.9",
     "webpack": "^1.12.2"
   },
   "dependencies": {
+    "body-parser": "^1.14.1",
+    "elasticsearch": "^8.2.0",
     "express": "^4.13.3",
+    "jsonwebtoken": "^5.4.0",
+    "mongoose": "^4.1.10",
+    "morgan": "^1.6.1",
     "passport": "^0.3.0",
-    "passport-http-bearer": "^1.0.1"
+    "passport-http-bearer": "^1.0.1",
+    "sendgrid": "^1.9.2"
   }
 }
