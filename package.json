@@ -5,9 +5,9 @@
   "main": "build/main.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha --recursive test/**/*.js",
+    "test": "mocha --require babel/register --recursive test/**/*.js",
     "test:watch": "npm run test -- --watch --reporter dot --growl",
-	"dev": "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,9 @@
     "body-parser": "^1.14.1",
     "elasticsearch": "^8.2.0",
     "express": "^4.13.3",
+    "fetch": "^0.3.6",
+    "flat": "^1.6.0",
+    "json-gate": "^0.8.22",
     "jsonwebtoken": "^5.4.0",
     "mongoose": "^4.1.10",
     "morgan": "^1.6.1",
