@@ -43,21 +43,21 @@ const querySchema = {
 		"required": true,
 		"type": "array",
 		"items": { "type": "string" },
-	}	
+	}
 };
 
 /**
  * This function defines application routes for handling
  */
 export default (app, middleware) => {
-	
+
 	// define the prefix for this section
-	let router = Router();		
+	let router = Router();
 	app.use('/school', router);
 	
 	router.get('/:id', getSchool);
 	router.get('/', middleware.validateRequestBody(querySchema), getSchools)
 	router.post('/', middleware.validateRequestBody(querySchema), getSchools); // POST may contain the body of the request => so multiple schools can be requested at once
-	
+
 	return router;
 }

@@ -9,8 +9,7 @@ export const Schema = {
 	email: { type: "string", format: "email", "required": false }
 };
 
-export default (lon, lat, radius, params) => {	
-	const flattened = flatten(params);					
+export default (lon, lat, radius, unitType, params) => {
 	const body = {
 		"query": {
 			"function_score": {
@@ -26,22 +25,52 @@ export default (lon, lat, radius, params) => {
 						}
 					}
 				],
-				"query": { 
-					"bool": {
-						"should": Object.keys(flattened).map(key => {
-							let match = {};
-							match[key] = flattened[key];
-							return { match };
-						})
-					}
-				} 
-			}
+				"query": {
+                    "nested": {
+                        "path": "units",
+                        "query": {
+                            "filtered": {
+                                "query": {
+                                    "bool": {
+                                        "must":{
+                                            "term": { unitType }
+                                        },
+                                        "should": Object.keys(params).map(key => {
+                							const type = Array.isArray(params[key]) ? "array" : typeof(params[key]);
+                                            //const value = type === "array" ? params[key][0] : params[key];
+                                            const value = params[key];
+
+                							return {
+                                                "nested": {
+                                                    "path": "units.information",
+                                                    "filter": {
+                                                        "bool": {
+                                                            "should": [
+                                                                { "term": { "item": key } },
+                                                                { "term": { [type]: value } }
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            };
+                						})
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+		    }
 		}
 	};
-	
+
+    console.log("\n\n\n");
+    console.log(JSON.stringify(body));
+    console.log("\n\n\n");
+
 	return elasticClient.search({
 		index: _index,
 		type: _type,
-		body		
+		body
 	});
 };

@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import connect from './db/connect';
+// import connect from './db/connect';
 
 //
 // create the app and attach the middleware
@@ -32,22 +32,22 @@ versions.map(v => {
 // connect to the datavase
 //
 
-const db = connect();
-db.on('error', () => {
-	console.error('Cannot connect to MongoDB.');	
-});
+// const db = connect();
+// db.on('error', () => {
+// 	console.error('Cannot connect to MongoDB.');
+// });
 
-db.once('open', () => {
-	console.log('MongoDB connection estabelished.');
-	
-	// 
+// db.once('open', () => {
+// 	console.log('MongoDB connection estabelished.');
+
+	//
 	// run the server:
 	//
-	
+
 	const port = process.env.port || 8080;
 	const host = process.env.host || "localhost";
-	
+
 	app.listen(port, host, () => {
 		console.log(`App is listening at http://${host}:${port}`);
 	});
-});
+// });
