@@ -1,0 +1,124 @@
+{
+  "mappings": {
+    "school": {
+      "properties": {
+        "RED-IZO": {
+          "type": "string"
+        },
+        "metadata": {
+          "properties": {
+            "address": {
+              "properties": {
+                "city": {
+                  "type": "string"
+                },
+                "googleMapsId": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "geo_point"
+                },
+                "postalCode": {
+                  "type": "string"
+                },
+                "ruianCode": {
+                  "type": "string"
+                },
+                "street": {
+                  "type": "string"
+                }
+              }
+            },
+            "contact": {
+              "properties": {
+                "emails": {
+                  "type": "string"
+                },
+                "fax": {
+                  "type": "string"
+                },
+                "phoneNumbers": {
+                  "type": "string"
+                },
+                "websites": {
+                  "type": "string"
+                }
+              }
+            },
+            "founder": {
+              "type": "string"
+            },
+            "headmaster": {
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "units": {
+          "type": "nested",
+          "properties": {
+            "IZO": {
+              "type": "string"
+            },
+            "metadata": {
+              "properties": {
+                "ICO": {
+                  "type": "string"
+                },
+                "address": {
+                  "properties": {
+                    "city": {
+                      "type": "string"
+                    },
+                    "postalCode": {
+                      "type": "string"
+                    },
+                    "ruianCode": {
+                      "type": "string"
+                    },
+                    "street": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "contact": {
+                  "properties": {
+                    "phoneNumbers": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "sections": {
+              "properties": {
+                "information": {
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "title": {
+                  "type": "string"
+                }
+              }
+            },
+            "unitType": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import cors from 'cors';
+import cfenv from 'cfenv';
 // import connect from './db/connect';
 
 //
@@ -8,6 +10,7 @@ import morgan from 'morgan';
 //
 
 var app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'))
@@ -44,10 +47,9 @@ versions.map(v => {
 	// run the server:
 	//
 
-	const port = process.env.port || 8080;
-	const host = process.env.host || "localhost";
 
-	app.listen(port, host, () => {
-		console.log(`App is listening at http://${host}:${port}`);
+	const port = cfenv.getAppEnv().port;
+	app.listen(port, '0.0.0.0', () => {
+		console.log(`App is listening at port ${port}`);
 	});
 // });

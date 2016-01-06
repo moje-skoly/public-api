@@ -4,7 +4,7 @@
   "description": "This is a public API for the 'Nase skoly' project.",
   "main": "build/main.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "forever server.js",
     "test": "mocha --require babel/register --recursive test/**/*.js",
     "test:watch": "npm run test -- --watch --reporter dot --growl",
     "dev": "nodemon server.js"
@@ -37,6 +37,8 @@
   },
   "dependencies": {
     "body-parser": "^1.14.1",
+    "cfenv": "^1.0.3",
+    "cors": "^2.7.1",
     "elasticsearch": "^8.2.0",
     "express": "^4.13.3",
     "fetch": "^0.3.6",
