@@ -21,7 +21,8 @@ const search = (req, res) => {
 				.then(schools => {
 					res.json({
 						"success": true,
-						"radius": `${radius}km`,
+						"radius": `${radius} km`,
+						"location": { lat, lon },
 						"total": schools.hits.total,
 						"max_score": schools.hits.max_score,
 						"schools": schools.hits.hits.map(hit => Object.assign({
@@ -31,10 +32,17 @@ const search = (req, res) => {
 					});
 				})
 				.catch(err => {
-					console.log(err);
-					res.status(StatusCode.INTERNAL_ERROR).json({
-						success: false,
-						msg: 'Internal Server Error'
+					// the location was not found...
+					res.json({						
+						"success": false,
+						"radius": `${radius} km`,
+						"location": {
+							"lat": 50.0803197,
+							"lon": 14.4155353
+						},
+						"total": 0,
+						"max_score": 0,
+						"schools": []
 					});
 				});
 		} else {
@@ -60,7 +68,7 @@ export default (app, middleware) => {
 	router.get('/:address/:type', middleware.validateRequestBody(Schema), search);
 	router.get('/:address/:radius/:type', middleware.validateRequestBody(Schema), search);
 	router.post('/:address/:type', middleware.validateRequestBody(Schema), search); // POST may contain the body of the request
-  router.post('/:address/:radius/:type', middleware.validateRequestBody(Schema), search); // POST may contain the body of the request 
+  	router.post('/:address/:radius/:type', middleware.validateRequestBody(Schema), search); // POST may contain the body of the request 
 
 	return router;
 }

@@ -43,6 +43,7 @@
     "express": "^4.13.3",
     "fetch": "^0.3.6",
     "flat": "^1.6.0",
+    "forever": "^0.15.1",
     "json-gate": "^0.8.22",
     "jsonwebtoken": "^5.4.0",
     "mongoose": "^4.1.10",
