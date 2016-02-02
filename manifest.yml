@@ -1,0 +1,8 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  domain: mojeskoly.cz
+  name: api
+  host: api
+  disk_quota: 1024M

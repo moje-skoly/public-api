@@ -14,8 +14,8 @@ const queryParams = (req) => {
 };
 
 const search = (req, res) => {
-	reverseGeocoding(req.params.address, (lon, lat) => {
-		if(lon !== null && lat !== null) {
+	reverseGeocoding(req.params.address, (lon, lat, addresses) => {
+		if(lon !== null) {
 			const { radius, params, type } = queryParams(req);
 			find(lon, lat, radius, type, params)
 				.then(schools => {
@@ -27,11 +27,13 @@ const search = (req, res) => {
 						"max_score": schools.hits.max_score,
 						"schools": schools.hits.hits.map(hit => Object.assign({
 							"_id": hit._id,
-							"_score": hit._score,
-						}, hit._source))
+							"distance": hit.sort[0]
+						}, hit._source)),
+						addresses
 					});
 				})
 				.catch(err => {
+					console.log(err);
 					// the location was not found...
 					res.json({						
 						"success": false,
@@ -42,13 +44,15 @@ const search = (req, res) => {
 						},
 						"total": 0,
 						"max_score": 0,
-						"schools": []
+						"schools": [],
+						addresses
 					});
 				});
 		} else {
-			res.status(StatusCode.INTERNAL_ERROR).json({
+			console.log(`reverse geocoding of '${req.params.address}' failed`);
+			res.status(StatusCode.NOT_FOUND).json({
 				success: false,
-				msg: 'Internal Server Error'
+				msg: 'Nothing was found'
 			});
 		}
 	});
