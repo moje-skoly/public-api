@@ -36,7 +36,7 @@ export default (address, done) => {
 			done(null);
 		} else {
 			const addresses = body.map(loc => formatAddress(loc.address)).reduce((acc, address) => acc.indexOf(address) === -1 && address.length > 0 ? [...acc, address] : acc, []);
-			const foundSpot = body.pop();
+			const foundSpot = body[0];
 			done(Number(foundSpot.lon), Number(foundSpot.lat), addresses);
 		}		
 	});
