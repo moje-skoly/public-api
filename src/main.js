@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
-import cfenv from 'cfenv';
+// import cfenv from 'cfenv'; // IBM Bluemix
 // import connect from './db/connect';
 
 //
@@ -46,9 +46,8 @@ versions.map(v => {
 	//
 	// run the server:
 	//
-
-
-	const port = cfenv.getAppEnv().port;
+	
+	const port = process.env.PORT || 6002;
 	app.listen(port, '0.0.0.0', () => {
 		console.log(`App is listening at port ${port}`);
 	});
