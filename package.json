@@ -7,7 +7,10 @@
     "start": "forever server.js",
     "test": "mocha --require babel/register --recursive test/**/*.js",
     "test:watch": "npm run test -- --watch --reporter dot --growl",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "restartServer": "node_modules/.bin/forever restart ./bin/server.js -p /tmp -pidFile=web-app.pid",
+    "startServer": "node_modules/.bin/forever start ./bin/server.js -p /tmp -pidFile=web-app.pid",
+    "build": "echo build"
   },
   "repository": {
     "type": "git",
