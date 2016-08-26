@@ -79,6 +79,9 @@
                     "postalCode": {
                       "type": "string"
                     },
+                    "location": {
+                      "type": "geo_point"
+                    },
                     "ruianCode": {
                       "type": "string"
                     },

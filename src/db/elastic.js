@@ -1,5 +1,5 @@
 import elasticsearch from 'elasticsearch';
 
 export default elasticsearch.Client({
-	host: "http://134.168.35.125:9200"
+	host: "http://127.0.0.1:9200"
 });
