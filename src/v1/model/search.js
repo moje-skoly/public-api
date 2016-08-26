@@ -15,7 +15,7 @@ export default (lon, lat, radius, unitType, params) => {
                         "query": {
                             "bool": {
                                 "must":{
-                                    "term": { unitType }
+                                    "term": { "units.unitType": unitType }
                                 },
                                 "should": Object.keys(params).map(key => {
         							const type = Array.isArray(params[key]) ? "array" : typeof(params[key]);
@@ -45,7 +45,7 @@ export default (lon, lat, radius, unitType, params) => {
         "sort" : [
             {
                 "_geo_distance" : {
-                    "location" : { lat, lon },
+                    "metadata.address.location" : { lat, lon },
                     "order" : "asc",
                     "unit" : "km"
                 }
