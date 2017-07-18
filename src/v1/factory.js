@@ -1,29 +1,29 @@
-import { Router } from 'express';
+import { Router } from "express";
 
 // load middleware
-import requiresAuth from './middleware/requiresAuthentication';
-import validateRequestBody from './middleware/validateRequestBody';
+import requiresAuth from "./middleware/requiresAuthentication";
+import validateRequestBody from "./middleware/validateRequestBody";
 
 // load api modules
-import setupWelcome from './routes/welcome';
-import setupSearch from './routes/search';
-import setupGetSchool from './routes/school';
+import setupWelcome from "./routes/welcome";
+import setupSearch from "./routes/search";
+import setupGetSchool from "./routes/school";
 
-// create a new router for the app 
+// create a new router for the app
 export let router = Router();
 
 setupWelcome(router, {
-	requiresAuth,
-	validateRequestBody
+  requiresAuth,
+  validateRequestBody
 });
 
 setupSearch(router, {
-	requiresAuth,
-	validateRequestBody
+  requiresAuth,
+  validateRequestBody
 });
 
 setupGetSchool(router, {
-	validateRequestBody
-})
+  validateRequestBody
+});
 
 export var version = 1;

@@ -1,0 +1,68 @@
+//POST /mojeskoly/school/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "nested": {
+            "path": "units",
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "term": {
+                      "units.unitType": "zakladni_skola"
+                    }
+                  },
+                  {
+                    "nested": {
+                      "path": "units.sections.information",
+                      "query": {
+                        "bool": {
+                          "must": [
+                            {
+                              "match": {
+                                "units.sections.information.key": "Bezbariérový přístup"
+                              }
+                            },
+                            {
+                              "match": {
+                                "units.sections.information.value": "ano"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ],
+                "filter": {
+                  "geo_distance": {
+                    "distance": "5km",
+                    "units.metadata.address.location": {
+                      "lat": 50.086468,
+                      "lon": 14.405191
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+    {
+      "_geo_distance": {
+        "metadata.address.location": {
+          "lat": 50.086468,
+          "lon": 14.405191
+        },
+        "order": "asc",
+        "unit": "km"
+      }
+    }
+  ],
+  "size": 15
+}

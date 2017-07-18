@@ -1,2 +1,2 @@
-export const _index = 'nase-skoly';
-export const _type = 'school';
+export const _index = "mojeskoly";
+export const _type = "school";

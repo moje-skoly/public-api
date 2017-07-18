@@ -3,60 +3,60 @@
     "school": {
       "properties": {
         "RED-IZO": {
-          "type": "string"
+          "type": "keyword"
         },
         "metadata": {
           "properties": {
             "address": {
               "properties": {
                 "city": {
-                  "type": "string"
+                  "type": "text"
                 },
                 "googleMapsId": {
-                  "type": "string"
+                  "type": "text"
                 },
                 "location": {
                   "type": "geo_point"
                 },
                 "postalCode": {
-                  "type": "string"
+                  "type": "text"
                 },
                 "ruianCode": {
-                  "type": "string"
+                  "type": "text"
                 },
                 "street": {
-                  "type": "string"
+                  "type": "text"
                 }
               }
             },
             "contact": {
               "properties": {
                 "emails": {
-                  "type": "string"
+                  "type": "text"
                 },
                 "fax": {
-                  "type": "string"
+                  "type": "text"
                 },
                 "phoneNumbers": {
-                  "type": "string"
+                  "type": "text"
                 },
                 "websites": {
-                  "type": "string"
+                  "type": "text"
                 }
               }
             },
             "founder": {
-              "type": "string"
+              "type": "text"
             },
             "headmaster": {
               "properties": {
                 "name": {
-                  "type": "string"
+                  "type": "text"
                 }
               }
             },
             "name": {
-              "type": "string"
+              "type": "text"
             }
           }
         },
@@ -64,36 +64,36 @@
           "type": "nested",
           "properties": {
             "IZO": {
-              "type": "string"
+              "type": "keyword"
             },
             "metadata": {
               "properties": {
                 "ICO": {
-                  "type": "string"
+                  "type": "keyword"
                 },
                 "address": {
                   "properties": {
                     "city": {
-                      "type": "string"
+                      "type": "text"
                     },
                     "postalCode": {
-                      "type": "string"
+                      "type": "text"
                     },
                     "location": {
                       "type": "geo_point"
                     },
                     "ruianCode": {
-                      "type": "string"
+                      "type": "text"
                     },
                     "street": {
-                      "type": "string"
+                      "type": "text"
                     }
                   }
                 },
                 "contact": {
                   "properties": {
                     "phoneNumbers": {
-                      "type": "string"
+                      "type": "text"
                     }
                   }
                 }
@@ -102,22 +102,23 @@
             "sections": {
               "properties": {
                 "information": {
+                  "type": "nested",
                   "properties": {
                     "key": {
-                      "type": "string"
+                      "type": "keyword"
                     },
                     "value": {
-                      "type": "string"
+                      "type": "text"
                     }
                   }
                 },
                 "title": {
-                  "type": "string"
+                  "type": "text"
                 }
               }
             },
             "unitType": {
-              "type": "string"
+              "type": "keyword"
             }
           }
         }
